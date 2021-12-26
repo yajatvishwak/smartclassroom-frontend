@@ -4,6 +4,8 @@ import StudentLogin from "./pages/StudentLogin";
 import StudentReports from "./pages/StudentReports";
 import StudentSubmission from "./pages/StudentSubmission";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import TeacherEntry from "./pages/TeacherEntry";
+import TeacherCreate from "./pages/TeacherCreate";
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,12 @@ function App() {
           </Route>
           <Route path="/student/submission" exact>
             <StudentSubmission></StudentSubmission>
+          </Route>
+          <Route path="/teacher/entry" exact>
+            <TeacherEntry></TeacherEntry>
+          </Route>
+          <Route path="/teacher/create" exact>
+            <TeacherCreate></TeacherCreate>
           </Route>
           <Route path="/teacher/" exact>
             <TeacherDashboard></TeacherDashboard>
