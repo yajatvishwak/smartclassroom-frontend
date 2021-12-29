@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^9.8.8",
+    "axios": "^0.24.0",
     "chart.js": "^3.6.2",
     "date-and-time": "^2.0.1",
     "greeting-time": "^1.0.0",
