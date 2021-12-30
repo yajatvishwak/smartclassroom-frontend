@@ -13,8 +13,8 @@ function TeacherLogin(params) {
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "auth successful") {
-          history.push("/teacher");
           localStorage.setItem("tid", res.data.user.tid);
+          history.push("/teacher");
         } else {
           alert("something went wrong");
         }
