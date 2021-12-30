@@ -34,7 +34,7 @@ function Home(params) {
           <div className=" flex justify-between">
             <div className="flex flex-col">
               <span className="text-3xl">
-                {greetingTime(new Date())} Vibha,
+                {greetingTime(new Date())} {localStorage.getItem("name")},
               </span>
               <span className="">Get to speed with your day</span>
             </div>

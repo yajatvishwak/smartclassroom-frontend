@@ -13,9 +13,10 @@ function StudentLogin(params) {
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "auth successful") {
-          history.push("/student");
           localStorage.setItem("classid", res.data.user.classid);
           localStorage.setItem("sid", res.data.user.sid);
+          localStorage.setItem("name", res.data.user.name);
+          history.push("/student");
         } else {
           alert("something went wrong");
         }
