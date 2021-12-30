@@ -2,20 +2,19 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-function StudentLogin(params) {
+function TeacherLogin(params) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let history = useHistory();
   function login(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/loginStudent", { username, password })
+      .post("http://localhost:5000/loginTeacher", { username, password })
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "auth successful") {
-          history.push("/student");
-          localStorage.setItem("classid", res.data.user.classid);
-          localStorage.setItem("sid", res.data.user.sid);
+          history.push("/teacher");
+          localStorage.setItem("tid", res.data.user.tid);
         } else {
           alert("something went wrong");
         }
@@ -29,7 +28,7 @@ function StudentLogin(params) {
           <span className="font-bold">Smart</span>{" "}
           <span className="text-yellow-500 font-bold">Classroom</span>{" "}
         </div>
-        <div className="text-lg mb-5 ">Login </div>
+        <div className="text-lg mb-5 ">Login teacher</div>
         <form className="flex flex-col text-lg w-screen max-w-xl">
           <input
             type="text"
@@ -55,4 +54,4 @@ function StudentLogin(params) {
     </section>
   );
 }
-export default StudentLogin;
+export default TeacherLogin;

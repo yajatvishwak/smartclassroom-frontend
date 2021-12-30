@@ -2,8 +2,31 @@ import BaseTemplate from "../components/BaseTemplate";
 import greetingTime from "greeting-time";
 import Card from "../components/Card";
 import date from "date-and-time";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Home(params) {
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/getNotification", {
+        class: localStorage.getItem("classid"),
+      })
+      .then((res) => {
+        setnotifications(() => {
+          return res.data.map((item) => item);
+        });
+      });
+  }, []);
+  const [notifications, setnotifications] = useState([]);
+  const notifiComp = notifications.map((item) => {
+    return (
+      <Card
+        priority={item.priority}
+        title={item.title}
+        teacher={item.teacher}
+      ></Card>
+    );
+  });
   return (
     <BaseTemplate>
       <section className="lg:col-span-3 border">
@@ -23,10 +46,7 @@ function Home(params) {
           <div className="font-medium">Annoucements</div>
           <div className="mt-7"></div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            <Card priority={"high"}></Card>
-            <Card priority={"med"}></Card>
-            <Card></Card>
-            <Card></Card>
+            {notifiComp}
           </div>
         </section>
       </section>

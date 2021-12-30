@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import BaseTemplate from "../components/BaseTemplate";
 
@@ -6,32 +7,42 @@ function Submission(params) {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(0);
   useEffect(() => {
-    const networkcall = [
-      {
-        submissionID: "123",
-        title: "This is tit111le",
-        description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-              ratione dignissimos nostrum earum! Aliquid maxime accusamus
-              placeat, nam facere quasi praesentium at neque quibusdam,
-              recusandae perferendis totam eos voluptates ut.`,
-        assignedTeacher: "This is assigned teacher",
-        teacherPicture: "https://via.placeholder.com/50",
-      },
-      {
-        submissionID: "1223",
-        title: "This is tit111le 22222",
-        description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-              ratione dign222222 ioafgklsdnfgaksdf asgdfasdfg hahahah gay earum! Aliquid maxime accusamus
-              placeat, nam facere quasi praesentium at neque quibusdam,
-              recusandae perferendis totam eos voluptates ut.`,
-        assignedTeacher: "This is assigned teacher",
-        teacherPicture: "https://via.placeholder.com/50",
-      },
-    ];
-    setSubmissions(() => {
-      return networkcall;
-    });
-    setLoading(() => false);
+    axios
+      .post("http://localhost:5000/getSubmissionRequest", {
+        class: localStorage.getItem("classid"),
+      })
+      .then((res) => {
+        setSubmissions(() => {
+          return res.data.map((item) => item);
+        });
+        setLoading(() => false);
+      });
+
+    // const networkcall = [
+    //   {
+    //     submissionID: "123",
+    //     title: "This is tit111le",
+    //     description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+    //           ratione dignissimos nostrum earum! Aliquid maxime accusamus
+    //           placeat, nam facere quasi praesentium at neque quibusdam,
+    //           recusandae perferendis totam eos voluptates ut.`,
+    //     assignedTeacher: "This is assigned teacher",
+    //     teacherPicture: "https://via.placeholder.com/50",
+    //   },
+    //   {
+    //     submissionID: "1223",
+    //     title: "This is tit111le 22222",
+    //     description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+    //           ratione dign222222 ioafgklsdnfgaksdf asgdfasdfg hahahah gay earum! Aliquid maxime accusamus
+    //           placeat, nam facere quasi praesentium at neque quibusdam,
+    //           recusandae perferendis totam eos voluptates ut.`,
+    //     assignedTeacher: "This is assigned teacher",
+    //     teacherPicture: "https://via.placeholder.com/50",
+    //   },
+    // ];
+    // setSubmissions(() => {
+    //   return networkcall;
+    // });
   }, []);
 
   const components = submissions.map((item, index) => {

@@ -6,6 +6,7 @@ import StudentSubmission from "./pages/StudentSubmission";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import TeacherEntry from "./pages/TeacherEntry";
 import TeacherCreate from "./pages/TeacherCreate";
+import TeacherLogin from "./pages/TeacherLogin";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path="/student/login" exact>
             <StudentLogin></StudentLogin>
+          </Route>
+          <Route path="/teacher/login" exact>
+            <TeacherLogin></TeacherLogin>
           </Route>
           <Route path="/student/submission" exact>
             <StudentSubmission></StudentSubmission>

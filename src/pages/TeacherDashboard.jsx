@@ -1,15 +1,59 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import BaseTemplateTeacher from "../components/BaseTemplateTeacher";
 
 function TeacherDashboard(params) {
+  useEffect(() => {
+    axios
+      .post("https://localhost:5000/getTeacherSubmissionRequest", {
+        tid: localStorage.getItem("tid"),
+      })
+      .then((res) => {
+        setsubmissionRequest(() => {
+          return { title: res.data.title };
+        });
+      });
+  }, []);
+
   const [submissionModal, setsubmissionModal] = useState(false);
+  const [submissionRequest, setsubmissionRequest] = useState([]);
+  const [notifications, setnotifications] = useState([]);
   const [selectedSubmission, setselectedSubmission] = useState("");
   function toggleSubmissionModal(submissionID) {
     console.log(submissionID);
     if (submissionID) setselectedSubmission(submissionID);
     setsubmissionModal(!submissionModal);
   }
+  let srcomp = submissionRequest.submission.map((item) => {
+    return (
+      <div
+        onClick={() => toggleSubmissionModal(item.srid)}
+        className="flex mt-6"
+      >
+        <div className="p-3 hover:bg-yellow-200 transition-all border w-full rounded-md flex items-center justify-between">
+          <div>
+            <div className="text-xl ">{sub}</div>
+            <div>5D •</div>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 5l7 7-7 7M5 5l7 7-7 7"
+            />
+          </svg>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <BaseTemplateTeacher>
@@ -51,19 +95,6 @@ function TeacherDashboard(params) {
               </div>
             </div>
           </div>
-          {/* <div className="row-start-1 col-start-2">
-            <div className="text-xl">Submission Details</div>
-            <div className="my-5">
-              This document is submitted by{" "}
-              <span className="font-bold">Yajat</span> on{" "}
-              <span className="font-bold">Friday</span>{" "}
-            </div>
-            <div className="my-5">
-              <div className="border p-3 rounded-md text-center hover:bg-yellow-200 transition-all">
-                Download Submission
-              </div>
-            </div>
-          </div> */}
         </div>
         <div
           onClick={() => {
@@ -80,33 +111,6 @@ function TeacherDashboard(params) {
         </div>
         <div className="mt-10">
           <div>Your Submission Requests</div>
-          <div
-            onClick={() => toggleSubmissionModal("submission id")}
-            className="flex mt-6"
-          >
-            <div className="p-3 hover:bg-yellow-200 transition-all border w-full rounded-md flex items-center justify-between">
-              <div>
-                <div className="text-xl ">
-                  This is the title of the submission
-                </div>
-                <div>5D • 10/2/22</div>
-              </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                />
-              </svg>
-            </div>
-          </div>
         </div>
       </div>
       <div className="col-span-2 m-16">
@@ -116,7 +120,7 @@ function TeacherDashboard(params) {
             <div className="p-3 border w-full ">
               <div className="text-xl ">this is the title of the request</div>
 
-              <div>Low • 5D • 10/2/22</div>
+              <div>Low • 5D •</div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-function Card({ priority }) {
+function Card({ priority, title, teacher }) {
   return (
     <div
       className={`py-6  px-5 ${
@@ -9,7 +9,7 @@ function Card({ priority }) {
           : "bg-green-100"
       } rounded-lg`}
     >
-      <span>This is an annoucement to do something by a given deadline</span>
+      <span>{title}</span>
       <div className="my-5"></div>
       <div
         className={`p-2 border ${
@@ -29,9 +29,7 @@ function Card({ priority }) {
           alt=""
         />
 
-        <span className="text-sm mx-4">
-          this is the teacher who assigned it
-        </span>
+        <span className="text-sm mx-4">{teacher}</span>
       </span>
     </div>
   );
