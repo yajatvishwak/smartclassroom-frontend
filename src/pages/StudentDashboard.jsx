@@ -63,7 +63,7 @@ function Home(params) {
         </div>
         <div className="lg:border  lg:border-t-0 lg:border-l-0">
           <div className="m-14 mt-5 mx-5">
-            Calendar of Events
+            Time Table
             <img
               src="https://via.placeholder.com/200"
               className=" w-full mt-3 rounded-xl"

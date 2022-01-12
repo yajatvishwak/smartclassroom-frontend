@@ -88,7 +88,7 @@ function Nav() {
         </a>
       ));
     });
-  }, [location.pathname]);
+  }, [location.pathname]);  
   return (
     <section className="bg-gray-800 text-white flex flex-col">
       <div className="text-3xl text-center m-10 mb-6 font-bold">

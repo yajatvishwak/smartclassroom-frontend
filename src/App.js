@@ -33,7 +33,7 @@ function App() {
           <Route path="/teacher/" exact>
             <TeacherDashboard></TeacherDashboard>
           </Route>
-          <Route path="/student" exact>
+          <Route path="/student/" exact>
             <StudentDashboard></StudentDashboard>
           </Route>
         </Switch>
