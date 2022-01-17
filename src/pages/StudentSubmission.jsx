@@ -6,6 +6,7 @@ function Submission(params) {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(0);
+  const [selectedFile, setselectedFile] = useState(null);
   useEffect(() => {
     axios
       .post("http://localhost:5000/getSubmissionRequest", {
@@ -13,8 +14,10 @@ function Submission(params) {
       })
       .then((res) => {
         setSubmissions(() => {
+          console.log(res.data);
           return res.data.map((item) => item);
         });
+
         setLoading(() => false);
       });
 
@@ -96,8 +99,26 @@ function Submission(params) {
             <div className="mt-10">Turn in your work</div>
             <div className="flex items-center mt-4 border rounded-xl p-5">
               <form className="flex flex-col w-full">
-                <input type="file" />
+                <input
+                  type="file"
+                  onChange={(e) => setselectedFile(e.target.files[0])}
+                />
                 <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData();
+                    formData.append("file", selectedFile, selectedFile.name);
+                    console.log(submissions[selected]);
+
+                    formData.append("sid", localStorage.getItem("sid"));
+                    formData.append("srid", submissions[selected].submissionID);
+                    formData.append("type", submissions[selected].type);
+                    axios
+                      .post("http://localhost:5000/turnin", formData)
+                      .then(() => {
+                        alert("done");
+                      });
+                  }}
                   type="submit"
                   className="p-3 bg-yellow-200 rounded-xl hover:bg-yellow-400 w-full mt-4"
                 >

@@ -52,7 +52,25 @@ function TeacherDashboard(params) {
                     <div>
                       {item.studentName} • {item.class}
                     </div>
-                    <div>
+                    <div
+                      onClick={() => {
+                        console.log("clicked");
+                        axios
+                          .post("http://localhost:5000/getfile", {
+                            file: item.filepath,
+                          })
+                          .then((res) => {
+                            const url = window.URL.createObjectURL(
+                              new Blob([res.data])
+                            );
+                            const link = document.createElement("a");
+                            link.href = url;
+                            link.setAttribute("download", item.filepath); //or any other extension
+                            document.body.appendChild(link);
+                            link.click();
+                          });
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"

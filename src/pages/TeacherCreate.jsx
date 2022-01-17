@@ -11,6 +11,7 @@ function TeacherReport() {
   const [stitle, setStitle] = useState("");
   const [desc, setDesc] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [type, settype] = useState("");
 
   function createSub(e) {
     e.preventDefault();
@@ -21,6 +22,7 @@ function TeacherReport() {
         desc: desc,
         title: stitle,
         deadline: deadline,
+        type: type,
       })
       .then((res) => {
         if (res.data.statuscode === 200) {
@@ -71,6 +73,28 @@ function TeacherReport() {
               <option value="5C">5C</option>
               <option value="5D">5D</option>
               <option value="5E">5E</option>
+            </select>
+          </div>
+          <div class="mb-6 flex items-center">
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Type
+            </label>
+            <select
+              onChange={(e) => settype(e.target.value)}
+              name=""
+              className="mx-2 p-2"
+              id=""
+            >
+              <option value="Assignment1"> Assignment1</option>
+              <option value="Assignment2"> Assignment2</option>
+              <option value="Quiz1">Quiz1</option>
+              <option value="Quiz1">Quiz2</option>
+              <option value="CIE1">CIE1</option>
+              <option value="CIE2">CIE2</option>
+              <option value="CIE3">CIE3</option>
             </select>
           </div>
           <div class="mb-6">

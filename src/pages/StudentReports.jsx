@@ -26,10 +26,10 @@ function StudentReports(params) {
             <div className="p-4 m-2 rounded-xl bg-gray-100  ">
               <Doughnut
                 data={{
-                  labels: ["marks", "total"],
+                  labels: ["obtained", "remaining"],
                   datasets: [
                     {
-                      data: [item.marks, item.total],
+                      data: [item.marks, item.total - item.marks],
                       backgroundColor: [
                         "rgba(255, 99, 132)",
                         "rgba(54, 162, 235)",
@@ -38,7 +38,9 @@ function StudentReports(params) {
                   ],
                 }}
               />
-              <div className="text-center mt-5 ">{item.name}</div>
+              <div className="text-center mt-5 ">
+                {item.name} - total: {item.total}
+              </div>
             </div>
           );
         });
@@ -47,10 +49,10 @@ function StudentReports(params) {
             <div className="p-4 m-2 rounded-xl bg-gray-100  ">
               <Doughnut
                 data={{
-                  labels: ["marks", "total"],
+                  labels: ["obtained", "remaining"],
                   datasets: [
                     {
-                      data: [item.marks, item.total],
+                      data: [item.marks, item.total - item.marks],
                       backgroundColor: [
                         "rgba(255, 99, 132)",
                         "rgba(54, 162, 235)",
@@ -59,7 +61,9 @@ function StudentReports(params) {
                   ],
                 }}
               />
-              <div className="text-center mt-5 ">{item.name}</div>
+              <div className="text-center mt-5 ">
+                {item.name} - total: {item.total}
+              </div>
             </div>
           );
         });
@@ -68,10 +72,10 @@ function StudentReports(params) {
             <div className="p-4 m-2 rounded-xl bg-gray-100  ">
               <Doughnut
                 data={{
-                  labels: ["marks", "total"],
+                  labels: ["obtained", "remaining"],
                   datasets: [
                     {
-                      data: [item.marks, item.total],
+                      data: [item.marks, item.total - item.marks],
                       backgroundColor: [
                         "rgba(255, 99, 132)",
                         "rgba(54, 162, 235)",
@@ -80,7 +84,9 @@ function StudentReports(params) {
                   ],
                 }}
               />
-              <div className="text-center mt-5 ">{item.name}</div>
+              <div className="text-center mt-5 ">
+                {item.name} - total: {item.total}
+              </div>
             </div>
           );
         });
