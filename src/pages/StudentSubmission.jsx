@@ -112,6 +112,7 @@ function Submission(params) {
 
                     formData.append("sid", localStorage.getItem("sid"));
                     formData.append("srid", submissions[selected].submissionID);
+                    console.log(submissions[selected])
                     formData.append("type", submissions[selected].type);
                     axios
                       .post("http://localhost:5000/turnin", formData)

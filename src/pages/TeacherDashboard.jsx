@@ -52,26 +52,9 @@ function TeacherDashboard(params) {
                     <div>
                       {item.studentName} • {item.class}
                     </div>
-                    <div
-                      onClick={() => {
-                        console.log("clicked");
-                        axios
-                          .post("http://localhost:5000/getfile", {
-                            file: item.filepath,
-                          })
-                          .then((res) => {
-                            const url = window.URL.createObjectURL(
-                              new Blob([res.data])
-                            );
-                            const link = document.createElement("a");
-                            link.href = url;
-                            link.setAttribute("download", item.filepath); //or any other extension
-                            document.body.appendChild(link);
-                            link.click();
-                          });
-                      }}
-                    >
-                      <svg
+                    <div>
+                       <a href={'http://localhost:5000/getfile?file='+item.filepath} download>
+                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
                         fill="none"
@@ -85,6 +68,8 @@ function TeacherDashboard(params) {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
+                       </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -118,7 +103,10 @@ function TeacherDashboard(params) {
               {item.class} • {item.deadline}
             </div>
           </div>
+
+         
           <svg
+          
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
